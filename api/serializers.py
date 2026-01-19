@@ -118,9 +118,10 @@ class CollegeWriteSerializer(serializers.ModelSerializer):
         return instance
 
 class EnquirySerializer(serializers.ModelSerializer):
+    college_name = serializers.CharField(source='college.name', read_only=True)
     class Meta:
         model = Enquiry
-        fields = '__all__'
+        fields = ['id', 'name', 'phone', 'email', 'message', 'enquiry_type', 'college', 'college_name', 'created_at']
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
